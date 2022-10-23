@@ -13,16 +13,18 @@
 
 //Category: Technologies
 //Elements: 5
+
+
 //1
-// const categories = document.querySelectorAll('.item');
-// console.log('Number of categories:', categories.length);
+const categories = document.querySelectorAll('.item');
+console.log('Number of categories:', categories.length);
 
-// //2
+//2
+for (const category of categories) {
+    console.log('Category:', category.querySelector('h2').textContent);
+    console.log('Elements:', category.querySelectorAll('li').length);
+}
 
-// const arr = [];
-// const names = document.querySelectorAll('h2');
-// for (const name of names) {
-//     arr.push(name.textContent);
-// }
-// console.log(arr);
-// console.log('Category:');
+
+
+
