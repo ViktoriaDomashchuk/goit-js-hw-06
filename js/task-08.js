@@ -18,13 +18,8 @@
 //поля буде ім'ям властивості,а значення поля - значенням властивості. 
 //для доступу до елементів форми використовуй властивість elements
 //5. Виведи об'єкт із введеними даними в консоль і очисти значення полів форми методом reset
-const refs = {
-  form: document.querySelector('.login-form'),
-  inputEmail: document.querySelector('.login-form'),
-  inputPassword: document.querySelector('.login-form'),
-};
-
-refs.form.addEventListener('submit', onFormSubmit);
+const form = document.querySelector('.login-form');
+form.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
   event.preventDefault();
@@ -43,7 +38,6 @@ function onFormSubmit(event) {
 
     console.log(userInfo);
 
-    refs.inputEmail.reset();
-    refs.inputPassword.reset();
+    form.reset();
   }
 }
