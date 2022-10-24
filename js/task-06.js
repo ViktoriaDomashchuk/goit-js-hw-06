@@ -1,6 +1,5 @@
-//Напиши скрипт, який під час втрати фокусу на інпуті
-//(подія blur), перевіряє його вміст щодо
-//правильноїкількості введених символів
+//Напиши скрипт, який під час втрати фокусу на інпуті(подія blur), перевіряє його вміст
+//щодо правильної кількості введених символів
 
 /* <input
   type="text"
@@ -8,21 +7,25 @@
   data-length="6"
   placeholder="Please enter 6 symbols"
 /> */
-//*Яка кількість символів повинна бути в інпуті, зазначається
-//в його атрибуті data - length
-//Якщо введена правильна кількість символів, то border інпуту стає зеленим,
-//якщо неправильна - червоним.
 
-//Для додавання стилів використову CSS-класи valid і invalid,
-//які ми вже додали у вихідні файли завдання.
-// #validation-input {
-//   border: 3px solid #bdbdbd;
-// }
+//*Яка кількість символів повинна бути в інпуті, зазначаєтьсяв його атрибуті data - length
+//Якщо введена правильна кількість символів, то border інпуту стає зеленим, якщо неправильна - червоним.
 
-// #validation-input.valid {
-//   border-color: #4caf50;
-// }
+//Для додавання стилів використову CSS-класи valid і invalid, які ми вже додали у вихідні файли завдання.
+// #validation-input {border: 3px solid #bdbdbd;}
+// #validation-input.valid {border-color: #4caf50;}
+// #validation-input.invalid {border-color: #f44336;}
 
-// #validation-input.invalid {
-//   border-color: #f44336;
-// }
+
+const input = document.querySelector('#validation-input');
+
+input.addEventListener('blur', onValidInput);
+
+function onValidInput() {
+  
+  if (input.value.length === Number(input.dataset.length)) {
+    input.classList.add('invalid');
+  } else {
+    input.classList.add('valid');
+  }
+}
