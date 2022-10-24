@@ -1,23 +1,39 @@
-//Hапиши скрипт створення і очищення колекції елементів.
-//Користувач вводить кількість елементів в inputі натискає кнопку Створити, після чого рендериться колекція.
-//Натисненням на кнопку Очистити, колекція елементів очищається 
+const refs = {
+  boxNumbers: document.querySelector('input[type="number"]'),
+  boxList: document.querySelector('#boxes'),
+  createEl: document.querySelector('[data-create]'),
+  deleteEl: document.querySelector('[data-destroy]'),
+};
 
-/*<div id="controls">
-  <input type="number" min="1" max="100" step="1" />
-  <button type="button" data-create>Create</button>
-  <button type="button" data-destroy>Destroy</button>
-</div>
+refs.createEl.addEventListener('click', createBoxes);
+refs.deleteEl.addEventListener('click', destroyBoxes);
 
-<div id="boxes"></div>*/
+function createBoxes(amount) { 
+  if (refs.boxNumbers.value >= 1 && refs.boxNumbers.value <= 100) {
+    amount = refs.boxNumbers.value;
+    const arr = [];
 
-//Створи функцію createBoxes(amount), яка приймає один параметр - число. 
-//Функція створює стільки <div>, скільки вказано в amount і додає їх у div#boxes
+    for (let i = 1; i <= amount; i += 1){
+      const newBox = document.createElement('div');
 
-//1. Розміри найпершого <div>- 30px на 30px
-//2. Кожен елемент після першого повинен бути ширшим і вищим від попереднього на 10px
-//3. Всі елементи повинні мати випадковий колір фону у форматі HEX.
-//Використовуй готову функцію getRandomHexColor() для отримання кольору
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+      newBox.style.width = `${30 + 10 * i}px`;
+      newBox.style.height = `${30 + 10 * i}px`;
+      newBox.style.backgroundColor = getRandomHexColor();
+      arr.push(newBox);
+    }
+
+    refs.boxList.append(...arr);
+  } else {
+    alert('Не можливо створити більше 100 елементів');
+  }
 }
-//Створи функцію destroyBoxes(), яка очищає вміст div#boxes, у такий спосіб видаляючи всі створені елементи
+
+function destroyBoxes() { 
+  refs.boxList.innerHTML = '';
+}
+
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, 0)}`;
+}
